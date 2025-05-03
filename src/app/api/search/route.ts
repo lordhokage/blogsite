@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { buildSearchIndex, searchDocuments } from '@/utils/search';
 
 // Cache for the search index
-let searchCache = null;
+let searchCache: any = null;
 
 export async function GET(request) {
   try {
