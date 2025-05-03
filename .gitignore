@@ -20,8 +20,6 @@
 # production
 /build
 
-# local markdown folder
-/content
 
 
 # data
