@@ -1,0 +1,17 @@
+---
+title: 'React Performance Mastery: When and How to Memoize Effectively'
+date: '2025-05-29'
+description: 'Advanced memoization strategies with real-world benchmarks and optimization patterns'
+tags: ['Performance', 'React Memo', 'Optimization']
+---
+
+```jsx
+const ExpensiveComponent = memo(
+  ({ data }) => {
+    // Component logic
+  },
+  (prevProps, nextProps) => {
+    return deepEqual(prevProps.data, nextProps.data);
+  }
+);
+```

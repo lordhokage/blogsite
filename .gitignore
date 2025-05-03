@@ -20,6 +20,13 @@
 # production
 /build
 
+# local markdown folder
+/content
+
+
+# data
+/data
+
 # misc
 .DS_Store
 *.pem

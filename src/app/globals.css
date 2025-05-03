@@ -1,26 +1,80 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import 'prism-themes/themes/prism-one-dark.css';
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-light: white;
+  --text-light: black;
+  --bg-dark: #121212;
+  --text-dark: white;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root.dark {
+  --bg-main: var(--bg-dark);
+  --text-main: var(--text-dark);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root:not(.dark) {
+  --bg-main: var(--bg-light);
+  --text-main: var(--text-light);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+/* Ensure dark mode colors work with MDX content */
+.dark .prose {
+  color: #f3f4f6; /* text-gray-100 */
+}
+
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose h5,
+.dark .prose h6,
+.dark .prose strong,
+.dark .prose code {
+  color: #f9fafb; /* text-gray-50 */
+}
+
+.dark .prose a {
+  color: #ffffff; /* text-blue-300 */
+}
+
+.dark .prose blockquote {
+  color: #d1d5db; /* text-gray-300 */
+  border-color: #4b5563; /* border-gray-600 */
+}
+
+.dark .prose hr {
+  border-color: #4b5563; /* border-gray-600 */
+}
+
+.dark .prose code {
+  background-color: #1f2937; /* bg-gray-800 */
+}
+
+.dark .prose pre {
+  background-color: #111827; /* bg-gray-900 */
+  color: #f9fafb; /* text-gray-50 */
+}
+
+.dark .prose img {
+  border-color: #4b5563; /* border-gray-600 */
+}
+
+/* Fix for Tailwind v4 with MDX content */
+:is(.dark .dark\:text-white) {
+  color: #ffffff;
+}
+
+:is(.dark .dark\:bg-gray-900) {
+  background-color: #121212;
 }

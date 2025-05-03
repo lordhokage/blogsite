@@ -1,0 +1,23 @@
+---
+title: 'Mastering React Hooks: A Comprehensive Guide'
+date: '2023-09-15'
+author: 'Sarah Johnson'
+tags: ['React', 'Hooks', 'JavaScript']
+---
+
+# React Hooks Explained
+
+React Hooks revolutionized functional components when they were introduced in React 16.8. Let's explore the fundamental hooks:
+
+## useState: Managing State
+
+```javascript
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <button onClick={() => setCount(count + 1)}>Clicked {count} times</button>
+  );
+}
+```

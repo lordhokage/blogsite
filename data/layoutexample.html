@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Josh-Inspired Layout</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      window.onload = () => {
+        lucide.createIcons();
+      };
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-white text-gray-800">
+    <!-- Main container -->
+    <div class="max-w-5xl mx-auto px-4">
+      <!-- Header -->
+      <header class="flex justify-between items-center py-6">
+        <div class="text-2xl font-bold text-purple-700">YourSite</div>
+
+        <!-- Navigation Links -->
+        <nav class="hidden md:flex gap-8 text-sm font-medium">
+          <a href="#" class="hover:text-purple-500">Categories</a>
+          <a href="#" class="hover:text-purple-500">Courses</a>
+          <a href="#" class="hover:text-purple-500">Goodies</a>
+          <a href="#" class="hover:text-purple-500">About</a>
+        </nav>
+
+        <!-- Icons -->
+        <div class="flex items-center gap-4">
+          <i data-lucide="search" class="w-5 h-5 cursor-pointer"></i>
+          <i data-lucide="volume-2" class="w-5 h-5 cursor-pointer"></i>
+          <i data-lucide="sun" class="w-5 h-5 cursor-pointer"></i>
+          <i data-lucide="rss" class="w-5 h-5 cursor-pointer"></i>
+        </div>
+      </header>
+
+      <!-- Main content layout -->
+      <main class="flex flex-col lg:flex-row gap-12 py-10">
+        <!-- Article Section -->
+        <section class="lg:w-2/3 space-y-10">
+          <article>
+            <h2 class="text-xl font-bold">The Post-Developer Era</h2>
+            <p class="text-gray-600 mt-2">
+              When OpenAI released GPT-4 back in March 2023, they kickstarted
+              the AI revolution...
+            </p>
+          </article>
+
+          <article>
+            <h2 class="text-xl font-bold">A Million Little Secrets</h2>
+            <p class="text-gray-600 mt-2">
+              Deconstructing the “Whimsical Animations” landing page...
+            </p>
+          </article>
+        </section>
+
+        <!-- Sidebar -->
+        <aside class="lg:w-1/3 space-y-8">
+          <!-- Categories -->
+          <div>
+            <h3
+              class="text-pink-600 font-semibold uppercase text-sm tracking-wide"
+            >
+              Browse by Category
+            </h3>
+            <div class="flex flex-wrap gap-2 mt-2">
+              <span class="bg-blue-100 px-2 py-1 rounded text-sm">CSS</span>
+              <span class="bg-blue-100 px-2 py-1 rounded text-sm">React</span>
+              <span class="bg-blue-100 px-2 py-1 rounded text-sm">Next.js</span>
+              <span class="bg-blue-100 px-2 py-1 rounded text-sm"
+                >JavaScript</span
+              >
+            </div>
+          </div>
+
+          <!-- Popular Content -->
+          <div>
+            <h3
+              class="text-pink-600 font-semibold uppercase text-sm tracking-wide"
+            >
+              Popular Content
+            </h3>
+            <ul class="mt-2 space-y-1 text-sm">
+              <li>→ An Interactive Guide to Flexbox</li>
+              <li>→ A Modern CSS Reset</li>
+              <li>→ An Interactive Guide to CSS</li>
+            </ul>
+          </div>
+        </aside>
+      </main>
+
+      <!-- Footer -->
+      <footer class="py-6 text-center text-gray-400 text-sm">
+        &copy; 2025 YourSite. All rights reserved.
+      </footer>
+    </div>
+  </body>
+</html>
+
+<!--
+
+    <div className="flex items-center space-x-3">
+            <button
+              className="p-2 hover:opacity-70 transition-opacity"
+              aria-label="Search"
+            >
+              <Search size={20} />
+            </button>
+            <button
+              className="p-2 hover:opacity-70 transition-opacity"
+              aria-label="Audio"
+            >
+              <Volume2 size={20} />
+            </button>
+            <button
+              className="p-2 hover:opacity-70 transition-opacity"
+              aria-label="Theme"
+            >
+              <Sun size={20} />
+            </button>
+            <button
+              className="p-2 hover:opacity-70 transition-opacity"
+              aria-label="RSS"
+            >
+              <Rss size={20} />
+            </button>
+          </div>
+-->

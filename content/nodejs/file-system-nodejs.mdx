@@ -1,0 +1,136 @@
+---
+title: 'Demystifying the File System Module in Node.js'
+date: '2025-05-02'
+author: 'Tech Curious'
+tags: ['Node.js', 'JavaScript', 'File System', 'Backend']
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Demystifying the File System Module in Node.js 🧙‍♂️
+
+If you've ever needed to read, write, or delete files in a Node.js app, you've probably encountered the **`fs` module**. It's one of Node's core modules — no installation needed — and it's powerful, flexible, and just a bit quirky.
+
+Let’s unpack this digital toolbox, one hammer and screwdriver at a time.
+
+---
+
+## 📁 What is the `fs` Module?
+
+The `fs` module stands for **File System**, and it allows you to **interact with the file system on your machine**. Think of it like your app's personal file butler.
+
+There are two main ways to use it:
+
+- **Asynchronous (non-blocking)**: Better for performance.
+- **Synchronous (blocking)**: Easier to write, not so great for performance.
+
+You import it like this:
+
+```js
+{
+  `const fs = require('fs');`;
+}
+```
+
+---
+
+## 📖 Reading Files
+
+### Async Style (preferred):
+
+```js
+{
+  `fs.readFile('example.txt', 'utf8', (err, data) => {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  console.log(data);
+});`;
+}
+```
+
+### Sync Style:
+
+```js
+{
+  `const data = fs.readFileSync('example.txt', 'utf8');
+console.log(data);`;
+}
+```
+
+> 🚨 **Pro Tip**: Avoid the sync version unless you're writing a quick script or working outside the main thread.
+
+---
+
+## 📝 Writing Files
+
+### Async:
+
+```js
+fs.writeFile('output.txt', 'Hello, Node.js!', (err) => {
+  if (err) throw err;
+  console.log('File written successfully!');
+});
+```
+
+### Sync:
+
+```js
+fs.writeFileSync('output.txt', 'Hello, again!');
+console.log('File written (sync)!');
+```
+
+---
+
+## 📂 Creating and Deleting Files
+
+Want to build and destroy like a digital deity?
+
+### Create (or append):
+
+```js
+fs.appendFile('log.txt', 'New log entry\\n', (err) => {
+  if (err) throw err;
+  console.log('Log updated!');
+});
+```
+
+### Delete:
+
+````js
+  fs.unlink('unwanted.txt', (err) => {
+  if (err) throw err;
+  console.log('File deleted!');
+});
+
+```
+
+---
+
+## 📑 Reading Directories
+
+Sometimes you want to know what’s in a folder:
+
+```js
+{
+  `fs.readdir('./', (err, files) => {
+  if (err) throw err;
+  console.log('Files in directory:', files);
+});`;
+}
+````
+
+---
+
+## ⚙️ A Few Extra Tips
+
+- Always handle errors in async methods.
+- Prefer Promises or `fs.promises` if you're using async/await.
+- You can check for file existence with `fs.existsSync()`, but it’s better to try and handle errors gracefully instead of pre-checking.
+
+---
+
+## 🚀 Final Thoughts
+
+The `fs` module is your gateway to local file interactions. It's not glamorous, but it's incredibly powerful. Learn it well and you'll be reading logs, generating reports, and automating file tasks like a backend wizard.

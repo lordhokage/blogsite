@@ -1,0 +1,19 @@
+---
+title: 'Next.js 15: Revolutionizing Server Components and Data Fetching'
+date: '2025-06-05'
+description: 'Deep dive into Next.js server components with streaming SSR patterns'
+tags: ['Next.js', 'Server Components', 'SSR']
+---
+
+```jsx
+// app/page.js
+async function Page() {
+  const data = await fetchData();
+
+  return (
+    <ClientComponent>
+      <ServerComponent data={data} />
+    </ClientComponent>
+  );
+}
+```

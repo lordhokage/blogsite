@@ -1,0 +1,17 @@
+---
+title: 'Custom Hooks You Should Know'
+description: 'Save time and write cleaner logic with these handy custom hooks.'
+date: '2025-04-25'
+---
+
+## 🔄 useToggle
+
+```jsx
+import { useState } from 'react';
+
+function useToggle(initial = false) {
+  const [value, setValue] = useState(initial);
+  const toggle = () => setValue((v) => !v);
+  return [value, toggle];
+}
+```
