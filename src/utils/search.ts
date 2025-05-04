@@ -7,7 +7,6 @@ import matter from 'gray-matter';
 // Convert fs.readdir to Promise-based
 const readdir = promisify(fs.readdir);
 const readFile = promisify(fs.readFile);
-const stat = promisify(fs.stat);
 
 // Create a FlexSearch Document instance
 const searchIndex = new Document({

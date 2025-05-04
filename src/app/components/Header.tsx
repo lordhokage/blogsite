@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Search, Volume2, Sun, Moon, Rss, Bookmark } from 'lucide-react';
+import { Search, Sun, Moon, Rss, Bookmark } from 'lucide-react';
 import CategoryDrop from './CategoryDrop';
 import { useDarkMode } from '@/hooks/useDarkMode';
 import SearchModal from './SearchModal';
@@ -110,12 +110,13 @@ const Header: React.FC = () => {
           >
             {isDark ? <Moon size={20} /> : <Sun size={20} />}
           </button>
-          <button
+          <Link
             className="p-2 hover:opacity-70 transition-opacity"
+            href={`${process.env.NEXT_PUBLIC_BASE_URL}/rss.xml`}
             aria-label="RSS"
           >
             <Rss size={20} />
-          </button>
+          </Link>
         </div>
         {isSearchOpen && <SearchModal onClose={closeSearch} />}
       </header>

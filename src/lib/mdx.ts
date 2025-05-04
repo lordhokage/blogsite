@@ -7,6 +7,21 @@ import rehypePrism from 'rehype-prism-plus';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 
+export function getAllPostsMeta() {
+  const fileNames = fs.readdirSync(CONTENT_DIR);
+
+  return fileNames.map((fileName) => {
+    const fullPath = path.join(CONTENT_DIR, fileName);
+    const fileContents = fs.readFileSync(fullPath, 'utf8');
+    const { data } = matter(fileContents);
+
+    return {
+      ...data,
+      slug: fileName.replace(/\.mdx?$/, ''),
+    };
+  });
+}
+
 function getAllFiles(dirPath: string, arrayOfFiles: string[] = []) {
   const files = fs.readdirSync(dirPath);
   files.forEach((file) => {

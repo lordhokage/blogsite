@@ -11,7 +11,7 @@ export default function BookmarkPage() {
     setBookmarks(getBookmarks());
   }, []);
 
-  const handleRemove = (slug) => {
+  const handleRemove = (slug: string) => {
     removeBookmark(slug);
     setBookmarks(getBookmarks());
   };

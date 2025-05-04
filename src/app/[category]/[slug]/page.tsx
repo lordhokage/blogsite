@@ -1,8 +1,12 @@
 import { getPostBySlug } from '@/lib/mdx';
-import Link from 'next/link';
+
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
 import rehypePrism from 'rehype-prism-plus';
-import { Metadata } from 'next';
+import MDXContent from '@/app/components/MDXContent';
+import LikeButton from '@/app/components/LikeButton';
+import ArticleView from '@/app/components/ArticleView';
+import Comments from '@/app/components/Comments';
+
 export const dynamicParams = true;
 
 const components = {
@@ -35,9 +39,6 @@ const components = {
     />
   ),
 };
-type BlogPageProps = {
-  params: { slug: string; category: string };
-};
 
 export async function generateMetadata({
   params,
@@ -68,7 +69,7 @@ export default async function BlogPage({
         </h1>
         {/* <BlogView slug={slug} /> */}
 
-        <p className="text-center text-md italic text-gray-400 mt-1 ">
+        <div className="text-center text-md italic text-gray-400 mt-1 ">
           Filed under <span className="font-medium ">General</span> on{' '}
           {/* {formatDate(post.frontMatter.date)} */}
           <br />
@@ -76,7 +77,13 @@ export default async function BlogPage({
             Last updated on{' '}
             {/* <strong>{formatDate(post.frontMatter.updated)}</strong> */}
           </span>
-        </p>
+          <br />
+          {/* <span>Likes and Views</span> <br /> */}
+          <div className="flex justify-around items-center gap-4">
+            <LikeButton />
+            <ArticleView />
+          </div>
+        </div>
         <div className="prose dark:prose-invert max-w-none mt-20">
           <MDXRemote
             source={post.content}
@@ -88,6 +95,7 @@ export default async function BlogPage({
             }}
           />
         </div>
+        {/* <Comments /> */}
       </article>
     </main>
   );
