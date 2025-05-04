@@ -30,7 +30,7 @@ const components = {
     />
   ),
   h1: (props: MDXRemoteProps) => (
-    <h1 {...props} className="text-2xl font-semibold mt-10" />
+    <h1 {...props} className="text-lg lg:text-xl font-semibold mt-10" />
   ),
   blockquote: (props: MDXRemoteProps) => (
     <blockquote
@@ -64,7 +64,7 @@ export default async function BlogPage({
   return (
     <main className=" flex flex-col gap-12 py-10 lg:flex-row">
       <article className=" relative prose prose-invert prose-neutral max-w-2xl mx-auto p-8">
-        <h1 className="text-center text-4xl font-bold mb-10">
+        <h1 className="text-center text-2xl lg:text-4xl font-bold mb-10">
           {post.frontMatter.title}
         </h1>
         {/* <BlogView slug={slug} /> */}
@@ -99,8 +99,4 @@ export default async function BlogPage({
       </article>
     </main>
   );
-}
-
-function HelloWorld() {
-  return <h1 className="text-5xl text-green-400">Hello World,</h1>;
 }

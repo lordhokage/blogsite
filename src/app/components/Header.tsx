@@ -14,12 +14,16 @@ const Header: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>();
   const dropdownRef = useRef(null);
   const pathname = usePathname();
+
   const openSearch = () => {
     setIsSearchOpen(true);
   };
 
   const closeSearch = () => {
     setIsSearchOpen(false);
+  };
+  const closeCategoryDrop = () => {
+    setActiveDropdown('');
   };
 
   const { isDark, toggle } = useDarkMode();
@@ -67,7 +71,10 @@ const Header: React.FC = () => {
                   {link.name}
                 </button>
 
-                <CategoryDrop isOpen={activeDropdown === 'categories'} />
+                <CategoryDrop
+                  isOpen={activeDropdown === 'categories'}
+                  onClose={closeCategoryDrop}
+                />
               </div>
             ) : (
               <Link

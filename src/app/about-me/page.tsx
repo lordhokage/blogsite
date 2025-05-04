@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-
+import LogoSwitch from '../components/LogoSwitch';
 const skills = [
   'Next.js',
   'React.js',
@@ -53,12 +53,19 @@ export default function AboutPage() {
         <h1 className="text-5xl font-bold tracking-tight mb-4">
           Hey, I’m a Full-Stack Developer
         </h1>
-        <p className="text-lg text-white max-w-2xl mx-auto">
+        <p className="text-lg  max-w-2xl mx-auto">
           I specialize in building robust, scalable, and modern web applications
           using the best tools of today—Next.js, React, Supabase, Prisma, and
           MongoDB. I turn ideas into clean, efficient code.
         </p>
       </motion.div>
+      <div>
+        <span className="text-3xl ">Intern At</span>
+        <div className="flex items-center mt-5 mb-10">
+          <LogoSwitch />
+          <h2 className="text-3xl text-blue-400">Elon Soft</h2>
+        </div>
+      </div>
 
       {/* Skills Section */}
       <motion.div

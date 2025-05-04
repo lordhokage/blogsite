@@ -2,13 +2,14 @@
 import React from 'react';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
+
 const categories = [
-  { name: 'CSS', icon: '#' },
-  { name: 'React', icon: '⚛️' },
-  { name: 'Animation', icon: '✨' },
-  { name: 'JavaScript', icon: 'JS' },
-  { name: 'Career', icon: '💼' },
-  { name: 'General', icon: '📄' },
+  { name: 'CSS', icon: '#', link: '/css' },
+  { name: 'React', icon: '⚛️', link: '/react' },
+  // { name: 'Animation', icon: '✨', link: '/animation' },
+  { name: 'JavaScript', icon: 'JS', link: 'js' },
+  { name: 'Career', icon: '💼', link: '/career' },
+  { name: 'General', icon: '📄', link: '/blog' },
 ];
 
 const dropdownVariants = {
@@ -19,17 +20,19 @@ const dropdownVariants = {
 
 interface CategoryDropProps {
   isOpen: boolean;
+  onClose: () => void;
 }
-const CategoryDrop = ({ isOpen }: CategoryDropProps) => {
+const CategoryDrop = ({ isOpen, onClose }: CategoryDropProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
         <motion.div className="absolute z-10 mt-2 w-64 bg-white rounded-lg shadow-lg p-4 grid grid-cols-1 gap-3 border border-gray-200">
-          {categories.map(({ name, icon }, index) => (
+          {categories.map(({ name, icon, link }, index) => (
             <Link
               key={index}
-              href={`/${name.toLowerCase()}`}
+              href={link}
               className="flex items-center p-2 hover:bg-gray-50 rounded-md"
+              onClick={onClose}
             >
               <span className="w-6 h-6 flex items-center justify-center text-sm bg-blue-100 text-blue-600 rounded mr-3">
                 {icon}

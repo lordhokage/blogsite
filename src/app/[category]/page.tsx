@@ -41,7 +41,7 @@ export default async function CategoryPage({ params }: Props) {
             <Link href={`/${category}/${post.slug}`}>
               <h3 className="text-xl font-bold  ">{post.frontMatter.title}</h3>
             </Link>
-            <p className="mb-4 mt-3">{post.frontMatter.description}</p>
+            <p className="mb-4 mt-3 ">{post.frontMatter.description}</p>
             <p className="text-sm text-gray-500 mb-2">
               {post.frontMatter.date}
             </p>

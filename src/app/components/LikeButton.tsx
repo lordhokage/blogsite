@@ -29,7 +29,7 @@ const LikeButton = () => {
   };
 
   return (
-    <div className="relative h-12 flex items-center">
+    <div className="relative h-12 h flex items-center">
       <button
         onClick={handleLike}
         className="flex items-center justify-center focus:outline-none"
@@ -37,7 +37,7 @@ const LikeButton = () => {
       >
         <motion.div whileTap={{ scale: 0.9 }} className="relative">
           <Heart
-            size={32}
+            size={26}
             className={`transition-colors ${
               liked ? 'text-red-500 fill-red-500' : 'text-gray-400'
             }`}
@@ -54,7 +54,7 @@ const LikeButton = () => {
                 transition={{ duration: 0.4 }}
                 className="absolute inset-0 flex items-center justify-center"
               >
-                <Heart size={32} className="text-red-500 fill-red-500" />
+                <Heart size={26} className="text-red-500 fill-red-500" />
               </motion.div>
             )}
           </AnimatePresence>
