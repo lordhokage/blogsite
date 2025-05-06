@@ -8,7 +8,7 @@ import matter from 'gray-matter';
 const siteConfig = {
   title: 'Blog Site',
   description: 'The personal blog site site created using mdx and nextjs',
-  siteUrl: 'localhost:3000',
+  siteUrl: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
   author: {
     name: 'Rajiv Dahal',
     email: 'rajivdahal89@gmail.com',

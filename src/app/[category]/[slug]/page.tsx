@@ -2,14 +2,18 @@ import { getPostBySlug } from '@/lib/mdx';
 
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
 import rehypePrism from 'rehype-prism-plus';
-import MDXContent from '@/app/components/MDXContent';
-import LikeButton from '@/app/components/LikeButton';
+// import LikeButton from '@/app/components/LikeButton';
 import ArticleView from '@/app/components/ArticleView';
-import Comments from '@/app/components/Comments';
-
+import FlexboxWrapper from '../../components/FlexBoxWrapper';
 export const dynamicParams = true;
 
+function Greet() {
+  return <h2 className="text-6xl text-green-300">Hello World</h2>;
+}
+
 const components = {
+  FlexboxWrapper,
+  Greet,
   code: (props: MDXRemoteProps) => (
     <code
       className="bg-gray-100 dark:bg-gray-800 rounded px-1 py-0.5 text-sm text-gray-800 dark:text-gray-200"
@@ -80,7 +84,7 @@ export default async function BlogPage({
           <br />
           {/* <span>Likes and Views</span> <br /> */}
           <div className="flex justify-around items-center gap-4">
-            <LikeButton />
+            {/* <LikeButton slug={slug} /> */}
             <ArticleView />
           </div>
         </div>

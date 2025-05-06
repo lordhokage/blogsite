@@ -1,6 +1,3 @@
-// First, install the required package:
-// npm install feed
-
 // app/rss.xml/route.ts
 import { Feed } from 'feed';
 import fs from 'fs';
@@ -10,18 +7,18 @@ import { NextResponse } from 'next/server';
 
 export async function GET() {
   const feed = new Feed({
-    title: 'Your Blog Title',
-    description: 'Your blog description',
-    id: 'https://yourdomain.com/',
-    link: 'https://yourdomain.com/',
+    title: 'Rajiv Dahal',
+    description: 'Blog created using nextjs and mdx',
+    id: 'https://blogsite-plum-kappa.vercel.app/',
+    link: 'https://blogsite-plum-kappa.vercel.app/',
     language: 'en',
     favicon: 'https://yourdomain.com/favicon.ico',
     copyright: `All rights reserved ${new Date().getFullYear()}`,
     updated: new Date(),
     author: {
-      name: 'Your Name',
-      email: 'your-email@example.com',
-      link: 'https://yourdomain.com/about',
+      name: 'Rajiv Dahal',
+      email: 'rajivdahal89@gmail.com',
+      link: 'https://blogsite-plum-kappa.vercel.app/',
     },
   });
 
@@ -32,15 +29,15 @@ export async function GET() {
   posts.forEach((post) => {
     feed.addItem({
       title: post.title,
-      id: `https://yourdomain.com/${post.slug}`,
-      link: `https://yourdomain.com/${post.slug}`,
+      id: `https://blogsite-plum-kappa.vercel.app/${post.slug}`,
+      link: `https://blogsite-plum-kappa.vercel.app/${post.slug}`,
       description: post.description,
       content: post.excerpt,
       author: [
         {
-          name: post.author || 'Your Name',
-          email: 'your-email@example.com',
-          link: 'https://yourdomain.com/about',
+          name: post.author || 'Rajiv',
+          email: 'rajivdahal89@gmail.com',
+          link: 'https://blogsite-plum-kappa.vercel.app/',
         },
       ],
       date: new Date(post.date),

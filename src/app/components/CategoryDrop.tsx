@@ -26,7 +26,7 @@ const CategoryDrop = ({ isOpen, onClose }: CategoryDropProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div className="absolute z-10 mt-2 w-64 bg-white rounded-lg shadow-lg p-4 grid grid-cols-1 gap-3 border border-gray-200">
+        <motion.div className="absolute z-40 mt-2 w-64 bg-white rounded-lg shadow-lg p-4 grid grid-cols-1 gap-3 border border-gray-200">
           {categories.map(({ name, icon, link }, index) => (
             <Link
               key={index}

@@ -1,15 +1,48 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart } from 'lucide-react';
-
-const LikeButton = () => {
+import { createClient } from '@/lib/supabase/client';
+const LikeButton = ({ slug }) => {
+  const supabase = createClient();
   const [liked, setLiked] = useState(false);
-  const [likeCount, setLikeCount] = useState(42);
+  const [likeCount, setLikeCount] = useState(0);
   const [showAnimation, setShowAnimation] = useState(false);
   const [isIncrement, setIsIncrement] = useState(true);
+  const [isLiking, setIsLiking] = useState(false);
 
-  const handleLike = () => {
+  useEffect(() => {
+    const fetchLikes = async () => {
+      const { data, error } = await supabase
+        .from('articles')
+        .select('likes')
+        .eq('slug', slug)
+        .single();
+
+      if (!error && data) {
+        setLikeCount(data.likes);
+      }
+    };
+
+    fetchLikes();
+  }, [slug]);
+
+  const handleLike = async () => {
+    setIsLiking(true);
+    const res = await fetch('/api/like', {
+      method: 'POST',
+      body: JSON.stringify({ slug }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    const result = await res.json();
+    if (!res.ok) {
+      console.error(result.error);
+    } else {
+      setLikeCount(result.likes);
+    }
+
+    setIsLiking(false);
     // Set animation type before changing liked state
     setIsIncrement(!liked);
 
