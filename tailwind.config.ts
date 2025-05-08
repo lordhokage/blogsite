@@ -8,6 +8,8 @@ module.exports = {
   darkMode: 'class', // This is critical for class-based dark mode
   theme: {
     extend: {
+      smallscreen: { raw: '(min-width: 385px)' },
+      screens: {},
       colors: {
         // Define your custom colors here, if needed
         primary: {

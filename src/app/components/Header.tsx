@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Search, Sun, Moon, Rss, Bookmark } from 'lucide-react';
+import { Search, Sun, Moon, Rss, Bookmark, Menu, X } from 'lucide-react';
 import CategoryDrop from './CategoryDrop';
 import { useDarkMode } from '@/hooks/useDarkMode';
 import SearchModal from './SearchModal';
@@ -10,6 +10,7 @@ import SearchModal from './SearchModal';
 const Header: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [activeDropdown, setActiveDropdown] = useState<string | null>();
   const dropdownRef = useRef(null);
@@ -89,6 +90,13 @@ const Header: React.FC = () => {
             )
           )}
         </nav>
+        <div
+          className="block sm:hidden transition-all"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X size={32} /> : <Menu />}
+        </div>
+
         <div className="hidden sm:flex items-center space-x-3">
           <button
             className="p-2 hover:opacity-70 transition-opacity"

@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Heart } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
+
 const LikeButton = ({ slug }) => {
   const supabase = createClient();
   const [liked, setLiked] = useState(false);
@@ -25,7 +26,7 @@ const LikeButton = ({ slug }) => {
     };
 
     fetchLikes();
-  }, [slug]);
+  }, [slug, supabase]);
 
   const handleLike = async () => {
     setIsLiking(true);

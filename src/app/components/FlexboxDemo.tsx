@@ -78,9 +78,16 @@ export default function FlexboxDemo() {
           padding: '1rem',
         }}
       >
-        <div className="bg-blue-500 w-12 h-12 rounded shadow-md" />
-        <div className="bg-pink-500 w-12 h-12 rounded shadow-md" />
-        <div className="bg-green-500 w-12 h-12 rounded shadow-md" />
+        <div className="bg-blue-500 w-12 h-12 rounded shadow-md flex items-center justify-center">
+          {' '}
+          1
+        </div>
+        <div className="bg-pink-500 w-12 h-12 rounded shadow-md flex items-center justify-center">
+          2
+        </div>
+        <div className="bg-green-500 w-12 h-12 rounded shadow-md flex items-center justify-center">
+          3
+        </div>
       </div>
     </div>
   );

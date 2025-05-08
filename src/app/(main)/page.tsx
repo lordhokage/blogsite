@@ -1,6 +1,6 @@
 import { getAllPosts } from '@/lib/mdx';
 import Link from 'next/link';
-import ArticlesList from './components/ArticleList';
+import ArticlesList from '../components/ArticleList';
 
 // Article Categories
 const categories = ['Nextjs', 'React', 'CSS', 'HTML'];

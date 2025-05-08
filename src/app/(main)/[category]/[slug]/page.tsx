@@ -2,9 +2,9 @@ import { getPostBySlug } from '@/lib/mdx';
 
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
 import rehypePrism from 'rehype-prism-plus';
-// import LikeButton from '@/app/components/LikeButton';
+import LikeButton from '@/app/components/LikeButton';
 import ArticleView from '@/app/components/ArticleView';
-import FlexboxWrapper from '../../components/FlexBoxWrapper';
+import FlexboxWrapper from '../../../components/FlexBoxWrapper';
 export const dynamicParams = true;
 
 function Greet() {

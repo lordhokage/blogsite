@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import LogoSwitch from '../components/LogoSwitch';
+import LogoSwitch from '../../components/LogoSwitch';
 const skills = [
   'Next.js',
   'React.js',

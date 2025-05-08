@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
 import remarkGFM from 'remark-gfm';
 import rehypePrism from 'rehype-prism-plus';
-
+import { cache } from 'react';
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 
 export function getAllPostsMeta() {
@@ -22,7 +22,7 @@ export function getAllPostsMeta() {
   });
 }
 
-function getAllFiles(dirPath: string, arrayOfFiles: string[] = []) {
+const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []) => {
   const files = fs.readdirSync(dirPath);
   files.forEach((file) => {
     const fullPath = path.join(dirPath, file);
@@ -33,7 +33,7 @@ function getAllFiles(dirPath: string, arrayOfFiles: string[] = []) {
     }
   });
   return arrayOfFiles;
-}
+};
 
 export function generateSearchIndex() {
   const files = getAllFiles(CONTENT_DIR);
@@ -83,7 +83,7 @@ export async function getPostBySlug(category: string, slug: string) {
   };
 }
 
-export async function getAllPosts() {
+export const getAllPosts = cache(async () => {
   const categories = getAllCategories();
 
   const allPosts: {
@@ -106,7 +106,7 @@ export async function getAllPosts() {
   }
 
   return allPosts;
-}
+});
 
 export function getSlugsByCategory(category: string): string[] {
   const categoryPath = path.join(CONTENT_DIR, category);
@@ -116,7 +116,7 @@ export function getSlugsByCategory(category: string): string[] {
     .map((file) => file.replace(/\.mdx$/, ''));
 }
 
-export async function getAllPostsByCategory(category: string) {
+export const getAllPostsByCategory = cache(async (category: string) => {
   const slugs = getSlugsByCategory(category);
 
   const posts = await Promise.all(
@@ -127,4 +127,4 @@ export async function getAllPostsByCategory(category: string) {
   );
 
   return posts;
-}
+});
