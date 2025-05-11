@@ -5,6 +5,9 @@ import rehypePrism from 'rehype-prism-plus';
 import LikeButton from '@/app/components/LikeButton';
 import ArticleView from '@/app/components/ArticleView';
 import FlexboxWrapper from '../../../components/FlexBoxWrapper';
+import { Suspense } from 'react';
+import { getAllPostSlugs } from '@/lib/rss';
+
 export const dynamicParams = true;
 
 function Greet() {
@@ -16,14 +19,14 @@ const components = {
   Greet,
   code: (props: MDXRemoteProps) => (
     <code
-      className="bg-gray-100 dark:bg-gray-800 rounded px-1 py-0.5 text-sm text-gray-800 dark:text-gray-200"
       {...props}
+      className="bg-gray-100 dark:bg-gray-800 rounded px-1 py-0.5 text-sm text-gray-800 dark:text-gray-200"
     />
   ),
   pre: (props: MDXRemoteProps) => (
     <pre
-      className="bg-gray-100 dark:bg-gray-800 rounded p-4 my-4 overflow-x-auto"
       {...props}
+      className="bg-gray-100 dark:bg-gray-800 rounded p-4 my-4 overflow-x-auto"
     />
   ),
   p: (props: MDXRemoteProps) => <p {...props} className="mb-6 text-lg"></p>,
@@ -38,8 +41,8 @@ const components = {
   ),
   blockquote: (props: MDXRemoteProps) => (
     <blockquote
-      className="border-l-4 border-gray-300 dark:border-gray-700 pl-4 my-4 italic text-gray-600 dark:text-gray-400"
       {...props}
+      className="border-l-4 border-gray-300 dark:border-gray-700 pl-4 my-4 italic text-gray-600 dark:text-gray-400"
     />
   ),
 };
@@ -52,8 +55,8 @@ export async function generateMetadata({
   const { category, slug } = await params;
   const post = await getPostBySlug(category, slug);
   return {
-    title: post.frontMatter.title,
-    description: post.frontMatter.description,
+    title: post?.frontMatter.title,
+    description: post?.frontMatter.description,
   };
 }
 
@@ -69,7 +72,7 @@ export default async function BlogPage({
     <main className=" flex flex-col gap-12 py-10 lg:flex-row">
       <article className=" relative prose prose-invert prose-neutral max-w-2xl mx-auto p-8">
         <h1 className="text-center text-2xl lg:text-4xl font-bold mb-10">
-          {post.frontMatter.title}
+          {post?.frontMatter.title}
         </h1>
         {/* <BlogView slug={slug} /> */}
 
@@ -85,22 +88,33 @@ export default async function BlogPage({
           {/* <span>Likes and Views</span> <br /> */}
           <div className="flex justify-around items-center gap-4">
             {/* <LikeButton slug={slug} /> */}
-            <ArticleView />
+            <ArticleView slug={slug} category={category} />
           </div>
         </div>
         <div className="prose dark:prose-invert max-w-none mt-20">
-          <MDXRemote
-            source={post.content}
-            components={components}
-            options={{
-              mdxOptions: {
-                rehypePlugins: [rehypePrism],
-              },
-            }}
-          />
+          <Suspense fallback={<div>Loading...</div>}>
+            {post?.content}
+            {/* <MDXRemote
+              source={post.content}
+              components={components}
+              options={{
+                mdxOptions: {
+                  rehypePlugins: [rehypePrism],
+                },
+              }}
+            /> */}
+          </Suspense>
         </div>
         {/* <Comments /> */}
       </article>
     </main>
   );
+}
+
+export async function generateStaticParams() {
+  const posts = getAllPostSlugs();
+  return posts.map((post) => ({
+    category: post.category,
+    slug: post.slug,
+  }));
 }

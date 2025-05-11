@@ -8,9 +8,9 @@ const categories = ['Nextjs', 'React', 'CSS', 'HTML'];
 export default async function Home() {
   const posts = await getAllPosts();
   return (
-    <main className="flex flex-col gap-10 py-10 lg:flex-row lg:gap-5">
+    <div className="flex flex-col gap-10 py-10 lg:flex-row lg:gap-5 ">
       {/* Article Section */}
-      <div className="w-full px-4 sm:px-6 lg:px-0">
+      <div className="w-full px-4 sm:px-6 lg:px-0 flex-1">
         <h1 className="text-lg mb-6 text-pink-600 uppercase">
           Articles and Tutorials
         </h1>
@@ -18,7 +18,7 @@ export default async function Home() {
       </div>
 
       {/* Sidebar */}
-      <aside className="w-full px-4 sm:px-6 lg:px-0 lg:w-1/3 space-y-8">
+      <aside className="w-full px-4 sm:px-6 lg:px-0 lg:w-1/3 xl:w-1/4 space-y-8">
         <div className="flex flex-col gap-6">
           <h3 className="text-sm font-semibold tracking-wide text-pink-600 uppercase">
             Browse by Category
@@ -47,6 +47,6 @@ export default async function Home() {
           </ul>
         </div>
       </aside>
-    </main>
+    </div>
   );
 }

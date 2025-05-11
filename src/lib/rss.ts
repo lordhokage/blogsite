@@ -132,3 +132,19 @@ export function generateRssFeed(posts: Post[]): Feed {
 
   return feed;
 }
+
+export function getAllPostSlugs() {
+  const basePath = path.join(process.cwd(), 'content');
+  const categories = fs.readdirSync(basePath);
+
+  return categories.flatMap((category) => {
+    const slugs = fs
+      .readdirSync(path.join(basePath, category))
+      .filter((file) => file.endsWith('.mdx'))
+      .map((file) => ({
+        category,
+        slug: file.replace(/\.mdx$/, ''),
+      }));
+    return slugs;
+  });
+}

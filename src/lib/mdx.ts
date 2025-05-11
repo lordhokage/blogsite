@@ -2,9 +2,24 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
+import { compileMDX } from 'next-mdx-remote/rsc';
 import remarkGFM from 'remark-gfm';
 import rehypePrism from 'rehype-prism-plus';
 import { cache } from 'react';
+import { components } from '@/app/components/CustomMDXComponents';
+
+type FrontMatter = {
+  title: string;
+  date: string;
+  description: string;
+  tags?: string[];
+};
+
+type Post = {
+  content: React.ReactNode;
+  frontMatter: FrontMatter;
+  slug: string;
+};
 const CONTENT_DIR = path.join(process.cwd(), 'content');
 
 export function getAllPostsMeta() {
@@ -62,7 +77,10 @@ export function getAllCategories(): string[] {
   return fs.readdirSync(CONTENT_DIR);
 }
 
-export async function getPostBySlug(category: string, slug: string) {
+export async function getPostBySlug(
+  category: string,
+  slug: string
+): Promise<Post | null> {
   const realSlug = slug.replace(/\.mdx$/, '');
   const filePath = path.join(CONTENT_DIR, category, `${realSlug}.mdx`);
   if (!fs.existsSync(filePath)) {
@@ -71,15 +89,21 @@ export async function getPostBySlug(category: string, slug: string) {
   const fileContents = fs.readFileSync(filePath, 'utf8');
 
   const { data, content } = matter(fileContents);
-  const mdxSource = await serialize(content, {
-    mdxOptions: { remarkPlugins: [remarkGFM], rehypePlugins: [rehypePrism] },
+  const mdxSource = await compileMDX({
+    components,
+    source: content,
+    options: {
+      parseFrontmatter: false,
+      mdxOptions: {
+        rehypePlugins: [rehypePrism],
+      },
+    },
   });
 
   return {
     slug: realSlug,
-    frontMatter: data,
-    content,
-    mdxSource,
+    frontMatter: data as FrontMatter,
+    content: mdxSource.content,
   };
 }
 
@@ -89,7 +113,7 @@ export const getAllPosts = cache(async () => {
   const allPosts: {
     slug: string;
     category: string;
-    frontMatter: any;
+    frontMatter: FrontMatter;
   }[] = [];
 
   for (const category of categories) {
@@ -98,9 +122,9 @@ export const getAllPosts = cache(async () => {
     for (const slug of slugs) {
       const post = await getPostBySlug(category, slug);
       allPosts.push({
-        slug: post.slug,
+        slug: post!.slug,
         category,
-        frontMatter: post.frontMatter,
+        frontMatter: post!.frontMatter,
       });
     }
   }

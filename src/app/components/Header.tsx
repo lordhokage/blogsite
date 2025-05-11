@@ -51,7 +51,7 @@ const Header: React.FC = () => {
 
   return (
     <div className="w-full">
-      <header className="max-w-5xl mx-auto px-6 lg:px-4 py-4 flex justify-between items-center">
+      <header className="max-w-5xl mx-auto px-6 lg:px-8 py-4 flex justify-between items-center">
         <div className="text-2xl font-bold text-purple-700">
           <Link href="/">BlogSite</Link>
         </div>

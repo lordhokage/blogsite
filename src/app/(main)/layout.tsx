@@ -23,7 +23,7 @@ export default function MainLayout({
   return (
     <>
       <Header />
-      <main className="flex-1  max-w-5xl mx-auto px-6 lg:px-4 py-10 w-full">
+      <main className="flex-1  max-w-5xl mx-auto px-6 lg:px-8 py-10 w-full">
         {children}
       </main>
       <Footer />
